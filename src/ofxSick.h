@@ -20,7 +20,8 @@ public:
 	void setup();
 	void update();
 	bool isFrameNew();
-	void draw(int gridDivisions = 10, float gridSize = 2000) const;
+	void draw(int gridDivisions = 10, float gridSize = 2000);
+	void drawRadarLines();
 	
 	void setScanningFrequency(float scanningFrequency);
 	void setAngularResolution(float angularResolution);

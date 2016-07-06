@@ -40,10 +40,10 @@ string getStatusString(int status) {
 
 ofxSick::ofxSick()
 	:angleOffset(0)
-	,scanningFrequency(50)
+	,scanningFrequency(25)//50
 	,startAngle(-45)
 	,stopAngle(225)
-	,angularResolution(.5)
+	,angularResolution(.25)
 	,newFrame(false)
 	,invert(false) {
 }
@@ -92,7 +92,7 @@ ofMesh pointCloud(const vector<ofVec2f>& points) {
 	return mesh;
 }
 
-void ofxSick::draw(int gridDivisions, float gridSize) const {
+void ofxSick::draw(int gridDivisions, float gridSize) {
 	ofPushMatrix();
 	ofPushStyle();
 	
@@ -112,6 +112,9 @@ void ofxSick::draw(int gridDivisions, float gridSize) const {
 		ofSetColor(255);
 		ofDrawBitmapString(ofToString(radius, 2) + "mm", textPosition);
 	}
+	
+	drawRadarLines();
+	
 	ofPopMatrix();
 	
 	ofSetColor(255);
@@ -120,6 +123,23 @@ void ofxSick::draw(int gridDivisions, float gridSize) const {
 	pointCloud(pointsSecond).draw();
 	ofPopStyle();
 	ofPopMatrix();
+}
+
+void ofxSick::drawRadarLines(){
+	
+	ofEnableAlphaBlending();
+	ofSetColor(ofColor::seaGreen.r, ofColor::seaGreen.g, ofColor::seaGreen.b, 70);
+	for(int i=0; i< pointsFirst.size(); i++){
+		if(colorsFirst.size() > i)ofSetColor(colorsFirst[i]); //{c} color britness was not detected
+		ofDrawLine(ofVec2f(0, 0), pointsFirst[i]);
+	}
+	
+	ofSetColor(ofColor::coral.r, ofColor::coral.g, ofColor::coral.b, 100);
+	for(int i=0; i< pointsSecond.size(); i++){
+		ofDrawLine(ofVec2f(0, 0), pointsSecond[i]);
+	}
+	ofDisableAlphaBlending();
+
 }
 
 const vector<unsigned short>& ofxSick::getDistanceFirst() const {

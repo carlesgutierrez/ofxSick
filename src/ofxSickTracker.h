@@ -31,10 +31,10 @@ template <class F>
 class ofxSickTracker : public ofxCv::PointTrackerFollower<F> {
 public:
 	ofxSickTracker()
-	:maxClusterCount(12)
-	,minClusterSize(1)
-	,maxPointDistance(50)
-	,useKmeans(true)
+	:maxClusterCount(100)
+	,minClusterSize(40)
+	,maxPointDistance(100)
+	,useKmeans(false)
 	,maxStddev(60) { // 60 is good for hand/arm tracking
 	}
 	void setupKmeans(float maxStddev, unsigned int maxClusterCount) {
