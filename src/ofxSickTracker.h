@@ -78,6 +78,9 @@ public:
 	const vector<cv::Point2f>& getClusters() const {
 		return clusters;
 	}
+	ofRectangle getTrackRegion() const{
+		return region;
+	}
 protected:
 	vector<cv::Point2f> clusters;
 	ofRectangle region;

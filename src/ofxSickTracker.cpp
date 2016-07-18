@@ -39,8 +39,8 @@ void ofxSickFollower::draw(float clusterSize) {
 	} else {
 		ofSetColor(ofColor::green);
 	}
-	ofCircle(toOf(position), clusterSize);
-	ofLine(toOf(recent), toOf(position));
+	ofDrawCircle(toOf(position), clusterSize);
+	ofDrawLine(toOf(recent), toOf(position));
 	ofSetColor(255);
 	ofDrawBitmapString(ofToString(label), toOf(recent));
 	all.draw();
